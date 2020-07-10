@@ -1,0 +1,79 @@
+<div class="container mt-2">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{isEdit ? 'Edit' : 'Create'}} Contact</div>
+                <div class="card-body">
+                    <form [formGroup]="contactForm" (submit)="contactSubmit()" novalidate>
+                        <div class="form-group row">
+                            <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
+                            <div class="col-md-6">
+                                <input type="text" id="firstname" class="form-control" name="firstname"
+                                    formControlName="firstName">
+                                <div
+                                    *ngIf="f.firstName.errors && (f.firstName.dirty || f.firstName.touched || submitted)">
+                                    <span class="text-danger" *ngIf="f.firstName.errors.required">First Name is
+                                        required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastname" class="col-md-4 col-form-label text-md-right">Last Name</label>
+                            <div class="col-md-6">
+                                <input type="text" id="lastname" class="form-control" name="lastname"
+                                    formControlName="lastName">
+                                <div *ngIf="f.lastName.errors && (f.lastName.dirty || f.lastName.touched || submitted)">
+                                    <span class="text-danger" *ngIf="f.lastName.errors.required">Last Name is
+                                        required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail
+                                Id</label>
+                            <div class="col-md-6">
+                                <input type="text" id="email" class="form-control" name="email" formControlName="email">
+                                <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched || submitted)">
+                                    <span class="text-danger" *ngIf="f.email.errors.required">Email is required</span>
+                                    <span class="text-danger" *ngIf="f.email.errors.email">Enter Valid email</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phoneNumber" class="col-md-4 col-form-label text-md-right">Mobile
+                                Number</label>
+                            <div class="col-md-6">
+                                <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+                                <div *ngIf="f.phoneNumber.errors && (f.phoneNumber.dirty || f.phoneNumber.touched || submitted)">
+                                    <span class="text-danger" *ngIf="f.phoneNumber.errors.required">Mobile is required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right"> Status</label>
+                            <div class="col-md-6 pt-2">
+                                <label>
+                                    <input type="radio" name="status" value="Active" formControlName="status">
+                                    Active</label>
+                                <label class="ml-3">
+                                    <input type="radio" name="status" value="Inactive" formControlName="status">
+                                    Inactive</label>
+                                <div *ngIf="f.status.errors && (f.status.dirty || f.status.touched || submitted)">
+                                    <span class="text-danger" *ngIf="f.status.errors.required">Status is required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                {{isEdit ? 'Update' : 'Create'}}
+                            </button>
+                            <button type="submit" class="btn btn-outline-secondary ml-5" [routerLink]="['/contacts/dashboard']">
+                                    Cancel
+                                </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
